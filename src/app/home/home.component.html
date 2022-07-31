@@ -1,0 +1,22 @@
+<div style="padding: 30px;">
+    <mat-spinner *ngIf="dogs.length === 0"></mat-spinner>
+
+    <!-- <mat-card *ngFor="let dog of dogs" style="margin-top:10px;">
+        <mat-card-content>
+            <img style="height:100%; width: 10%;" src="{{ dog }}" />
+        </mat-card-content>
+        <mat-card-actions>
+      <button mat-button>Select Dog</button>
+    </mat-card-actions>
+    </mat-card> -->
+
+    <mat-card class="home-card">
+        <mat-card-content>
+            <mat-grid-list cols="3" rowHeight="2:1" style="margin:10px;">
+                <mat-grid-tile *ngFor="let dog of dogs" [colspan] = "1" [rowspan] = "1">
+                    <img style="height:90%; width: 90%;" src="{{ dog }}" />
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+    </mat-card>
+</div>

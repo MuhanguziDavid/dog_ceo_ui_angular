@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dog_ceo_ui';
+  // sidenav: any = null;
 }
