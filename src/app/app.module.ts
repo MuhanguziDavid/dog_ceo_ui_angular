@@ -11,18 +11,21 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatCardModule } from '@angular/material/card'
 import { MatGridListModule } from '@angular/material/grid-list'
+import { MatDialogModule } from '@angular/material/dialog'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { BreedComponent } from './breed/breed.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    BreedComponent
+    BreedComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { BreedComponent } from './breed/breed.component';
     MatIconModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
