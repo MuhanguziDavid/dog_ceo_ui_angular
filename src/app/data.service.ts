@@ -7,7 +7,8 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  private REST_API_SERVER = "https://dog.ceo/api/breeds/image/random/9";
+  private random_dog_breeds_url = "https://dog.ceo/api/breeds/image/random/9";
+  private dog_breeds_list_url = "https://dog.ceo/api/breeds/list/all";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,8 +23,12 @@ export class DataService {
     return throwError(() => new Error(errorMessage));
   }
 
-  public sendGetRequest(){
-    return this.httpClient.get(this.REST_API_SERVER).pipe(retry(2), catchError(this.handleError));
+  public getRandomDogBreeds(){
+    return this.httpClient.get(this.random_dog_breeds_url).pipe(retry(2), catchError(this.handleError));
+  }
+
+  public getDogBreedsList(){
+    return this.httpClient.get(this.dog_breeds_list_url).pipe(retry(2), catchError(this.handleError));
   }
 
 }
