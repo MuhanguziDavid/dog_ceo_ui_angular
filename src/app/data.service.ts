@@ -7,8 +7,8 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  private random_dog_breeds_url = "https://dog.ceo/api/breeds/image/random/9";
-  private dog_breeds_list_url = "https://dog.ceo/api/breeds/list/all";
+  private get_random_dog_breeds_url = "https://dog.ceo/api/breeds/image/random/9";
+  private get_dog_breeds_list_url = "https://dog.ceo/api/breeds/list/all";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,11 +24,18 @@ export class DataService {
   }
 
   public getRandomDogBreeds(){
-    return this.httpClient.get(this.random_dog_breeds_url).pipe(retry(2), catchError(this.handleError));
+    return this.httpClient.get(this.get_random_dog_breeds_url).pipe(retry(2), catchError(this.handleError));
   }
 
   public getDogBreedsList(){
-    return this.httpClient.get(this.dog_breeds_list_url).pipe(retry(2), catchError(this.handleError));
+    return this.httpClient.get(this.get_dog_breeds_list_url).pipe(retry(2), catchError(this.handleError));
+  }
+
+  public getDogBreed(breed:string, subBreed:string){
+    if (subBreed) {
+      return this.httpClient.get(`https://dog.ceo/api/breed/${breed}/${subBreed}/images/random/9`).pipe(retry(2), catchError(this.handleError));
+    }
+    return this.httpClient.get(`https://dog.ceo/api/breed/${breed}/images/random/9`).pipe(retry(2), catchError(this.handleError));
   }
 
 }

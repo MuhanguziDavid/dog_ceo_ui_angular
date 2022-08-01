@@ -5,12 +5,12 @@
         <div *ngFor="let dogBreed of dogBreeds | keyvalue">
             <div *ngIf="dogBreed.value.length === 0; then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
-                <a mat-list-item [routerLink]="'/accounts'"> {{dogBreed.key}} </a>
+                <a mat-list-item [routerLink]="['/breed']" [queryParams]="{breed: dogBreed.key}"> {{dogBreed.key}} </a>
             </ng-template>
             <ng-template #elseBlock>
                 <ng-container *ngIf="dogBreed?.value?.length">
                     <ng-container *ngFor="let dogBreedValue of dogBreed.value">
-                        <a mat-list-item [routerLink]="'/accounts'"> {{dogBreed.key}}-{{dogBreedValue}} </a>
+                        <a mat-list-item [routerLink]="['/breed']" [queryParams]="{breed: dogBreed.key, subBreed: dogBreedValue}"> {{dogBreed.key}}-{{dogBreedValue}} </a>
                     </ng-container>
                 </ng-container>
             </ng-template>
