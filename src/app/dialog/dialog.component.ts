@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
@@ -7,10 +9,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog'
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { name: string; image: any }
+  ) {}
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {name:string, image:any}) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

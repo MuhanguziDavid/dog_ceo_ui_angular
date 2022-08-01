@@ -1,5 +1,10 @@
+/* eslint-disable no-undef */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef
+} from '@angular/material/dialog';
 
 import { DialogComponent } from './dialog.component';
 
@@ -14,9 +19,8 @@ describe('DialogComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }
       ],
-      declarations: [ DialogComponent ]
-    })
-    .compileComponents();
+      declarations: [DialogComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DialogComponent);
     component = fixture.componentInstance;
@@ -31,6 +35,8 @@ describe('DialogComponent', () => {
     const fixture = TestBed.createComponent(DialogComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.dialog-name')?.textContent).toContain('Name');
+    expect(compiled.querySelector('.dialog-name')?.textContent).toContain(
+      'Name'
+    );
   });
 });
