@@ -30,6 +30,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('dog_ceo_ui app is running!');
+    expect(compiled.querySelector('.brand')?.textContent).toContain('Dog CEO');
   });
 });
