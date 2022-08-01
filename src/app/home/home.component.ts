@@ -6,6 +6,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService } from '../data.service';
 import { DialogComponent } from '../dialog/dialog.component';
 
+interface DogBreeds {
+  breed: Array<string>;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +17,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  dogs: Array<any> = [];
+  dogPictures: Array<any> = [];
+  dogBreeds: DogBreeds = {breed: []};
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService, private matDialog: MatDialog) { }
@@ -29,15 +34,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.dataService.sendGetRequest().pipe(takeUntil(this.destroy$)).subscribe((data: any)=>{
+    this.dataService.getRandomDogBreeds().pipe(takeUntil(this.destroy$)).subscribe((data: any)=>{
       console.log(data);
-      this.dogs = data.message;
+      this.dogPictures = data.message;
+    })
+    this.dataService.getDogBreedsList().pipe(takeUntil(this.destroy$)).subscribe((data: any)=>{
+      console.log(data);
+      this.dogBreeds = data.message;
     })  
   }
 
   ngOnDestroy() {
     this.destroy$.next(true);
-    // Unsubscribe from the subject
     this.destroy$.unsubscribe();
   }
 }

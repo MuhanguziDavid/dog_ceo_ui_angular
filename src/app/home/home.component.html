@@ -1,13 +1,37 @@
-<div style="padding: 30px;">
-    <mat-spinner *ngIf="dogs.length === 0"></mat-spinner>
+<mat-sidenav-container class="main-container" autosize="true">
+    <mat-sidenav #sidenav mode="side" opened>
+        <h2 style="margin: 15px 0 0 15px;">Breeds</h2>
+      <mat-nav-list>
+        <div *ngFor="let dogBreed of dogBreeds | keyvalue">
+            <div *ngIf="dogBreed.value.length === 0; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <a mat-list-item [routerLink]="'/accounts'"> {{dogBreed.key}} </a>
+            </ng-template>
+            <ng-template #elseBlock>
+                <ng-container *ngIf="dogBreed?.value?.length">
+                    <ng-container *ngFor="let dogBreedValue of dogBreed.value">
+                        <a mat-list-item [routerLink]="'/accounts'"> {{dogBreed.key}}-{{dogBreedValue}} </a>
+                    </ng-container>
+                </ng-container>
+            </ng-template>
+        </div>
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content style="padding: 30px;">
+      <div style="height: 88vh;">
+        <mat-spinner *ngIf="dogPictures.length === 0"></mat-spinner>
 
-    <mat-card class="home-card">
-        <mat-card-content>
-            <mat-grid-list cols="3" rowHeight="2:1" style="margin:10px;">
-                <mat-grid-tile *ngFor="let dog of dogs" [colspan] = "1" [rowspan] = "1">
-                    <img style="height:90%; width: 90%;" src="{{ dog }}" (click)="openDialog(dog.split('/')[4], dog)" />
-                </mat-grid-tile>
-            </mat-grid-list>
-        </mat-card-content>
-    </mat-card>
-</div>
+        <mat-card class="home-card">
+            <mat-card-content>
+                <mat-grid-list cols="3" rowHeight="2:1" style="margin:10px;">
+                    <mat-grid-tile *ngFor="let dogPicture of dogPictures" [colspan] = "1" [rowspan] = "1">
+                        <img style="height:90%; width: 90%;" src="{{ dogPicture }}" (click)="openDialog(dogPicture.split('/')[4], dogPicture)" />
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-card-content>
+        </mat-card>
+      </div>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
