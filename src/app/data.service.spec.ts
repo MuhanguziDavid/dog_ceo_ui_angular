@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DataService } from './data.service';
 
@@ -8,7 +9,7 @@ describe('DataService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(DataService);
   });
