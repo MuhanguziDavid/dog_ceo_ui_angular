@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.dataService.getDogBreedsList().pipe(takeUntil(this.destroy$)).subscribe((data: any)=>{
       console.log(data);
       this.dogBreeds = data.message;
-    })  
+    })
   }
 
   ngOnDestroy() {
